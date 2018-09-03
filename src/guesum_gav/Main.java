@@ -10,25 +10,41 @@ public class Main {
 
     public static void main(String[] args) {
         int myNum = rand.nextInt(100) + 1;
-        ///System.out.println(myNum);   /// "///" ubratj i uvidish cislo zadumannoe komukterom!
+        System.out.println(myNum);   /// "///" ubratj i uvidish cislo zadumannoe komukterom!
 
         Boolean user_lost = true;     ///flazok podnjat
-        for (int i = 0; i < 10; i++) {
-            System.out.println("try * " + i);
-            int userNum = scan.nextInt();
 
-            if (myNum > userNum) {
-                System.out.println(" cislo bolse tvoego!");
-            } else if (myNum < userNum) {
-                System.out.println("tvojo cislo bolsje mojego");
-            } else {
-                System.out.println("uraaa! ti viigral!!!!");
-                user_lost = false;
+        String answer;
+
+
+        do {
+
+            for (int i = 0; i < 10; i++) {
+                System.out.println("try * " + i);
+                int userNum = scan.nextInt();
+
+                if (myNum > userNum) {
+                    System.out.println(" cislo bolse tvoego!");
+                } else if (myNum < userNum) {
+                    System.out.println("tvojo cislo bolsje mojego");
+                } else {
+                    System.out.println("uraaa! ti viigral!!!!");
+
+                    user_lost = false;
+                    break;
+                }
             }
-        }
-        if (user_lost = true) { /// flazok opuschen
-            System.out.println("oopsii!");
-        }
+            if ( user_lost = true) { /// flazok opuschen
+                System.out.println("oopsii! this'is "+myNum);
+            }
+            System.out.println(" Hoceh povtor, nazmi ...Y... , (YES)");
+            System.out.println();
+            System.out.println("ili esli ne hoces to ...N... , (NO) ");
 
+        answer = scan.next();
+
+        } while (answer.equals("y"));
     }
 }
+
+
