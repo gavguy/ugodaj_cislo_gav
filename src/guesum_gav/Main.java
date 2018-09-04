@@ -12,10 +12,10 @@ public class Main {
         int myNum = rand.nextInt(100) + 1;
         ///System.out.println(myNum);   /// "///" ubratj i uvidish cislo zadumannoe komukterom!
 
-        Boolean user_lost = true;     ///flazok podnjat
+         ///flazok podnjat
 
         String answer;
-
+        Boolean userlost = true;
 
         do {
 
@@ -30,15 +30,16 @@ public class Main {
                 } else {
                     System.out.println("uraaa! ti viigral!!!!");
 
-                    user_lost = false;
+                    userlost = false ;
                     break;
                 }
             }
-            if ( user_lost = true) { /// flazok opuschen
+            if ( userlost == true) { /// flazok opuschen
                 System.out.println("oopsii! this'is "+myNum);
             }
+            System.out.println("----------------------------");
             System.out.println(" Hoceh povtor, nazmi ...Y... , (YES)");
-            System.out.println();
+
             System.out.println("ili esli ne hoces to ...N... , (NO) ");
 
         answer = scan.next();
