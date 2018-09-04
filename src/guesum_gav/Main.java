@@ -1,6 +1,7 @@
 package guesum_gav;
 
 import java.sql.SQLOutput;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -12,16 +13,16 @@ public class Main {
         int myNum = rand.nextInt(100) + 1;
         System.out.println(myNum);   /// "///" ubratj i uvidish cislo zadumannoe komukterom!
 
-         ///flazok podnjat
+        ///flazok podnjat
 
-        int answer;
+        String answer;
         Boolean userlost = true;
 
         do {
 
             for (int i = 0; i < 10; i++) {
                 System.out.println("try * " + i);
-                int userNum = scan.nextInt();
+                int userNum = askNum();
 
                 if (myNum > userNum) {
                     System.out.println(" cislo bolse tvoego!");
@@ -30,12 +31,12 @@ public class Main {
                 } else {
                     System.out.println("uraaa! ti viigral!!!!");
 
-                    userlost = false ;
+                    userlost = false;
                     break;
                 }
             }
-            if ( userlost == true) { /// flazok opuschen
-                System.out.println("oopsii! this'is "+myNum);
+            if (userlost == true) { /// flazok opuschen
+                System.out.println("oopsii! this'is " + myNum);
             }
 
 
@@ -43,22 +44,21 @@ public class Main {
             System.out.println(" Hoceh povtor, nazmi ...Y... , (YES)");
             System.out.println("ili esli ne hoces to ...N... , (NO) ");
 
-            answer = askNum();
+            answer = askYN();
 
         } while (answer.equals("y"));
         System.out.println("good BY!");
     }
 
 
-
-    static String askYN()   {  ///string- metod vozvroshaet
+    static String askYN() {  ///string- metod vozvroshaet
         String answer;
         do {
             answer = scan.next();
             if (!answer.equals("y") && !answer.equals("n")) {
                 System.out.println("Y/N - Maybee...");
                 System.out.println("ⱠɆ₮'$ ƉØ Ɨ¥     c[_]");
-          //      continue;
+                //      continue;
             } else {
 
 
@@ -70,11 +70,18 @@ public class Main {
 
 ///////////////////////////////////////////////////
 
-    static int askNum()   {  ///string- metod vozvroshaet
+    static int askNum() {  ///string- metod vozvroshaet
         int answer;
         do {
-            answer = scan.nextInt();
-            if (answer <1 || answer >100) {
+            try {
+                answer = scan.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("this isn't number");
+                scan.next();
+                continue;
+            }
+
+            if (answer < 1 || answer > 100) {
                 System.out.println(" ɠเѵε ɱε α ɳµɱɓε૨ ƒ૨σɱ 0 ƭσ 100 ");
                 System.out.println("ⱠɆ₮'$ ƉØ Ɨ¥     c[_]");
                 //      continue;
