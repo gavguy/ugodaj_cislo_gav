@@ -10,7 +10,7 @@ public class Main {
 
     public static void main(String[] args) {
         int myNum = rand.nextInt(100) + 1;
-        System.out.println(myNum);   /// "///" ubratj i uvidish cislo zadumannoe komukterom!
+        ///System.out.println(myNum);   /// "///" ubratj i uvidish cislo zadumannoe komukterom!
 
         Boolean user_lost = true;     ///flazok podnjat
 
