@@ -1,13 +1,13 @@
 package guesum_gav;
 
+import javax.xml.transform.Result;
 import java.sql.SQLOutput;
-import java.util.InputMismatchException;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     static Random rand = new Random();
     static Scanner scan = new Scanner(System.in);
+    static List<Game_Result> results = new ArrayList<>();
 
     public static void main(String[] args) {
         int myNum = rand.nextInt(100) + 1;
@@ -19,8 +19,11 @@ public class Main {
         Boolean userlost = true;
 
         do {
+            System.out.println("ωɦαƭ เร ყσµ ɳαɱε?");
+            String name = scan.next();
 
-            for (int i = 0; i < 10; i++) {
+
+            for (int i = 1; i < 10; i++) {
                 System.out.println("try * " + i);
                 int userNum = askNum();
 
@@ -29,7 +32,14 @@ public class Main {
                 } else if (myNum < userNum) {
                     System.out.println("tvojo cislo bolsje mojego");
                 } else {
-                    System.out.println("uraaa! ti viigral!!!!");
+                    System.out.println("Ⴎℛᗅᗅ. ℽᝪႮ Ꮙⅈℕℰ !!!");
+
+
+                    Game_Result r = new Game_Result();     ///on shas pustoj, mi sozdali game result
+                    r.name = name;
+                    r.triesCount = i;
+                    results.add(r); ///// sozdajom i sohronjamem v spiske
+
 
                     userlost = false;
                     break;
@@ -47,7 +57,18 @@ public class Main {
             answer = askYN();
 
         } while (answer.equals("y"));
+
+        shovResult(); ////alt+ enter =  sozdajom novij metod
+
         System.out.println("good BY!");
+    }
+
+    private static void shovResult() {
+        for (Game_Result r : results) {
+            System.out.println(r.name + "->" + r.triesCount);
+        }
+
+
     }
 
 
