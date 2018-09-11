@@ -1,8 +1,9 @@
 package guesum_gav;
 
-import javax.xml.transform.Result;
-import java.sql.SQLOutput;
+
 import java.util.*;
+
+
 
 public class Main {
     static Random rand = new Random();
@@ -22,6 +23,8 @@ public class Main {
             System.out.println("ωɦαƭ เร ყσµ ɳαɱε?");
             String name = scan.next();
 
+            long T1 = System.currentTimeMillis();
+
 
             for (int i = 1; i < 10; i++) {
                 System.out.println("try * " + i);
@@ -34,10 +37,15 @@ public class Main {
                 } else {
                     System.out.println("Ⴎℛᗅᗅ. ℽᝪႮ Ꮙⅈℕℰ !!!");
 
+                    long T2 = System.currentTimeMillis();
+
+                    long t = (T2 - T1)/1000;
+
 
                     Game_Result r = new Game_Result();     ///on shas pustoj, mi sozdali game result
                     r.name = name;
                     r.triesCount = i;
+                    r.time = t;
                     results.add(r); ///// sozdajom i sohronjamem v spiske
 
 
@@ -48,6 +56,7 @@ public class Main {
             if (userlost == true) { /// flazok opuschen
                 System.out.println("oopsii! this'is " + myNum);
             }
+
 
 
             System.out.println("----------------------------");
@@ -63,9 +72,11 @@ public class Main {
         System.out.println("good BY!");
     }
 
+
+
     private static void shovResult() {
         for (Game_Result r : results) {
-            System.out.println(r.name + "->" + r.triesCount);
+            System.out.println(r.name + "->" + r.triesCount + "   time: " + r.time);
         }
 
 
