@@ -13,6 +13,7 @@ public class Main {
     static List<Game_Result> results = new ArrayList<>();
 
     public static void main(String[] args) {
+        loadResult();
         int myNum = rand.nextInt(100) + 1;
         System.out.println(myNum);   /// "///" ubratj i uvidish cislo zadumannoe komukterom!
 
@@ -20,7 +21,6 @@ public class Main {
 
         String answer;
         Boolean userlost = true;
-
 
 
         do {
@@ -51,6 +51,8 @@ public class Main {
                     r.triesCount = i;
                     r.time = t;
                     results.add(r); ///// sozdajom i sohronjamem v spiske
+                    results.sort(Comparator.<Game_Result>comparingInt(r0 -> r0.triesCount)
+                            .thenComparingLong(r0 -> r0.time));
 
 
                     userlost = false;
@@ -72,11 +74,11 @@ public class Main {
 
         shovResult(); ////alt+ enter =  sozdajom novij metod
         saveresult();
-        loadResult();
+
         System.out.println("good BY!");
     }
- private static void loadResult() {
 
+    private static void loadResult() {
 
 
         File file = new File("top_skore.txt");
@@ -92,7 +94,6 @@ public class Main {
             }
 
 
-
         } catch (IOException e) {
             System.out.println("cannot load from file");
 
@@ -105,23 +106,19 @@ public class Main {
 
         File file = new File("top_skore.txt");
         try (PrintWriter out = new PrintWriter(file)) {
-           for (Game_Result r : results) {
-               out.printf("%s %d %d\n", r.name, r.triesCount, r.time);
+            for (Game_Result r : results) {
+                out.printf("%s %d %d\n", r.name, r.triesCount, r.time);
 
-           }
-        } catch(IOException e) {
+            }
+        } catch (IOException e) {
             System.out.println("cannot save to file");
         }
 
 
-
-
-
-
     }
 
-
- //   private static void shovResult()  {//      int count = 0;
+    ////////////////////////////////////////////////////////////////////////////////////////////
+    //   private static void shovResult()  {//      int count = 0;
 //
 //        for (Game_Result r : results) {
 //
@@ -136,19 +133,42 @@ public class Main {
 //
 //
 //    }
+    /////////////////////////////////////////////////////////////////////
+//    private static void shovResult() {
+//        int count = Math.min(5, results.size()); /// isem minimalnoje znacenije , i ono fiksiruetsja
+//        if (results.size() < 5) {
+//            count = results.size();
+//        }
+//        for (int i = 0; i < count; i++) {
+//            Game_Result r = results.get(i);
+//            System.out.printf("%s %d %2fsec\n", r.name, r.triesCount, r.time / 1000.0);
+//
+//        }
+//
+//    }
+/////////////////////////////////////////////////////////////////////////////////////////////////////-pojavilos nedavno( funkcionalnoje programm.sortirovka po hodu
+// private static void shovResult() {
+//    results.stream() ////iset i peredajot dalsje
+//            .sorted(Comparator.<Game_Result>comparingInt(r -> r.triesCount)
+//                                .thenComparingLong(r -> r.time))
+//            .limit(5)
+//            .forEach(r -> {  ///peredajot dejstvije
+//                System.out.printf("%s %d %2fsec\n", r.name, r.triesCount, r.time / 1000.0);
+//            }); ///- ljamda
+//
+///////////////////////////////////////////////////////////////////////////////////////////////////-pojavilos nedavno( funkcionalnoje programm.sortirovanij spisok
     private static void shovResult() {
-        int count = 5;
-        if (results.size() < 5) {
-            count = results.size();
-        }
-        for (int i = 0; i < count; i++) {
-            Game_Result r = results.get(i);
-            System.out.printf("%s %d %2fsec\n", r.name, r.triesCount, r.time / 1000.0);
+        results.stream() ////iset i peredajot dalsje
+//            .sorted(Comparator.<Game_Result>comparingInt(r -> r.triesCount) ///--- uze ne nando, posle vivoda sorterujetsja
+//                                .thenComparingLong(r -> r.time))
+                .limit(5)
+                .forEach(r -> {  ///peredajot dejstvije
+                    System.out.printf("%s %d %2fsec\n", r.name, r.triesCount, r.time / 1000.0);
+                }); ///- ljamda
 
-        }
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     }
-
 
     static String askYN() {  ///string- metod vozvroshaet
         String answer;
