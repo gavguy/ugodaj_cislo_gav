@@ -14,12 +14,14 @@ public class Main {
 
     public static void main(String[] args) {
         int myNum = rand.nextInt(100) + 1;
-        System.out.println(myNum);   /// "///" ubratj i uvidish cislo zadumannoe komukterom!
+       /// System.out.println(myNum);   /// "///" ubratj i uvidish cislo zadumannoe komukterom!
 
         ///flazok podnjat
 
         String answer;
         Boolean userlost = true;
+
+
 
         do {
             System.out.println("ωɦαƭ เร ყσµ ɳαɱε?");
@@ -70,25 +72,57 @@ public class Main {
 
         shovResult(); ////alt+ enter =  sozdajom novij metod
         saveresult();
+        loadResult();
         System.out.println("good BY!");
     }
+ private static void loadResult() {
+
+
+
+        File file = new File("top_skore.txt");
+        try (Scanner in = new Scanner(file)) {
+
+
+            while (in.hasNext()) {
+                Game_Result result = new Game_Result();
+                result.name = in.next();
+                result.triesCount = in.nextInt();
+                result.time = in.nextLong();
+                results.add(result);
+
+            }
+        } catch (IOException e) {
+            System.out.println("cannot load from file");
+
+        }
+    }
+
 
     private static void saveresult() {
 
 
         File file = new File("top_skore.txt");
         try (PrintWriter out = new PrintWriter(file)) {
-            out.println ("hello world");
+           for (Game_Result r : results) {
+               out.printf("%s %d %d\n", r.name, r.triesCount, r.time);
+
+           }
         } catch(IOException e) {
             System.out.println("cannot save to file");
         }
+
+
+
+
+
+
     }
 
 
     private static void shovResult() {
         for (Game_Result r : results) {
-            System.out.println(r.name + "->" + r.triesCount + "   " +
-                    "time: " + r.time);
+
+            System.out.printf("%s %d %2fsec\n", r.name, r.triesCount, r.time/1000.0);
         }
 
 
