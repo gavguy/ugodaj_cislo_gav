@@ -1,8 +1,10 @@
 package guesum_gav;
 
 
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.*;
-
 
 
 public class Main {
@@ -39,7 +41,7 @@ public class Main {
 
                     long T2 = System.currentTimeMillis();
 
-                    long t = (T2 - T1)/1000;
+                    long t = (T2 - T1) / 100;
 
 
                     Game_Result r = new Game_Result();     ///on shas pustoj, mi sozdali game result
@@ -58,7 +60,6 @@ public class Main {
             }
 
 
-
             System.out.println("----------------------------");
             System.out.println(" Hoceh povtor, nazmi ...Y... , (YES)");
             System.out.println("ili esli ne hoces to ...N... , (NO) ");
@@ -68,15 +69,26 @@ public class Main {
         } while (answer.equals("y"));
 
         shovResult(); ////alt+ enter =  sozdajom novij metod
-
+        saveresult();
         System.out.println("good BY!");
     }
 
+    private static void saveresult() {
+
+
+        File file = new File("top_skore.txt");
+        try (PrintWriter out = new PrintWriter(file)) {
+            out.println ("hello world");
+        } catch(IOException e) {
+            System.out.println("cannot save to file");
+        }
+    }
 
 
     private static void shovResult() {
         for (Game_Result r : results) {
-            System.out.println(r.name + "->" + r.triesCount + "   time: " + r.time);
+            System.out.println(r.name + "->" + r.triesCount + "   " +
+                    "time: " + r.time);
         }
 
 
