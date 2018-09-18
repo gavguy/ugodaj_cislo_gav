@@ -1,2 +1,11 @@
+4 1 9
 gjl 1 12
+houk 1 18
 hf 1 19
+lok 1 23
+gav 1 24
+joker 1 26
+ikol 1 28
+kooooli 1 28
+1 1 33
+houk 1 81

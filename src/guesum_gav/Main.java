@@ -14,16 +14,17 @@ public class Main {
 
     public static void main(String[] args) {
         loadResult();
-        int myNum = rand.nextInt(100) + 1;
-        System.out.println(myNum);   /// "///" ubratj i uvidish cislo zadumannoe komukterom!
+
+          /// "///" ubratj i uvidish cislo zadumannoe komukterom!
 
         ///flazok podnjat
 
         String answer;
         Boolean userlost = true;
-
-
         do {
+
+            int myNum = rand.nextInt(100) + 1;
+            System.out.println(myNum);
             System.out.println("ωɦαƭ เร ყσµ ɳαɱε?");
             String name = scan.next();
 
@@ -163,7 +164,7 @@ public class Main {
 //                                .thenComparingLong(r -> r.time))
                 .limit(5)
                 .forEach(r -> {  ///peredajot dejstvije
-                    System.out.printf("%s %d %2fsec\n", r.name, r.triesCount, r.time / 1000.0);
+                    System.out.printf("%s %d %2fsec\n", r.name, r.triesCount, r.time / 1.0);
                 }); ///- ljamda
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
