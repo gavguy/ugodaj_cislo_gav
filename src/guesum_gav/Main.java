@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
         int myNum = rand.nextInt(100) + 1;
-       /// System.out.println(myNum);   /// "///" ubratj i uvidish cislo zadumannoe komukterom!
+        System.out.println(myNum);   /// "///" ubratj i uvidish cislo zadumannoe komukterom!
 
         ///flazok podnjat
 
@@ -89,8 +89,10 @@ public class Main {
                 result.triesCount = in.nextInt();
                 result.time = in.nextLong();
                 results.add(result);
-
             }
+
+
+
         } catch (IOException e) {
             System.out.println("cannot load from file");
 
@@ -119,12 +121,31 @@ public class Main {
     }
 
 
+ //   private static void shovResult()  {//      int count = 0;
+//
+//        for (Game_Result r : results) {
+//
+//
+//
+//            System.out.printf("%s %d %2fsec\n", r.name, r.triesCount, r.time/1000.0);      //////// esli min. 5 to pojdet, esli mense 5 strocek to error
+//            count+1;
+//                if (count = 5) {
+//                    break;
+//                }
+//        }
+//
+//
+//    }
     private static void shovResult() {
-        for (Game_Result r : results) {
-
-            System.out.printf("%s %d %2fsec\n", r.name, r.triesCount, r.time/1000.0);
+        int count = 5;
+        if (results.size() < 5) {
+            count = results.size();
         }
+        for (int i = 0; i < count; i++) {
+            Game_Result r = results.get(i);
+            System.out.printf("%s %d %2fsec\n", r.name, r.triesCount, r.time / 1000.0);
 
+        }
 
     }
 
