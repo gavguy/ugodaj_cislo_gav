@@ -159,17 +159,38 @@ public class Main {
 //
 ///////////////////////////////////////////////////////////////////////////////////////////////////-pojavilos nedavno( funkcionalnoje programm.sortirovanij spisok
     private static void shovResult() {
-        results.stream() ////iset i peredajot dalsje
-//            .sorted(Comparator.<Game_Result>comparingInt(r -> r.triesCount) ///--- uze ne nando, posle vivoda sorterujetsja
-//                                .thenComparingLong(r -> r.time))
-                .limit(5)
-                .forEach(r -> {  ///peredajot dejstvije
-                    System.out.printf("%s %d %2fsec\n", r.name, r.triesCount, r.time / 1.0);
-                }); ///- ljamda
+        int maxLen = findMaxNameLen();
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        results.stream()
+                .limit(5)
+                .forEach(r -> {
+                    System.out.print(r.name);
+                    for (int i = 0; i < (maxLen - r.name.length()); i++) {
+                        System.out.print("_");
+                    }
+                    System.out.printf("%d - %.2fsec\n", r.triesCount, r.time / 1000.0);
+                });
+    }
+///dobavleno okuratnoje otobrazenije danih
+
+    private static int findMaxNameLen() {
+
+        return results.stream()
+                .map(r -> r.name)
+                .map(n -> n.length())
+                .max(Comparator.naturalOrder())  ///!.max
+                .get();
 
     }
+//    }    private static int findMaxNameLen() {
+//        int result = 0;
+//        for (Game_Result r : results) {
+//            if (result < r.name.length()) {
+//                result = r.name.length();
+//            }
+//        }
+//        return result;
+//    }
 
     static String askYN() {  ///string- metod vozvroshaet
         String answer;
